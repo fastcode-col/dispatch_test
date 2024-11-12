@@ -1,0 +1,15 @@
+name: Dispatch Workflow
+
+on:
+  repository_dispatch:
+    types: [start-workflow]
+
+jobs:
+  run-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Print a message
+        run: echo "Workflow triggered by repository_dispatch event!"
