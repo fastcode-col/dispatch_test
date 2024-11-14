@@ -13,3 +13,18 @@ jobs:
 
       - name: Print a message
         run: echo "Workflow triggered by repository_dispatch event!"
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.8'  # Cambia a la versión que necesitas
+
+      - name: Install dependencies
+              run: |
+                python -m pip install --upgrade pip
+                pip install google-auth google-auth-oauthlib google-auth-httplib2 google-api-python-client
+                pip install nbconvert nbformat ipykernel jupyter
+      
+      - name: Run the Jupyter Notebook
+        run: |
+          jupyter nbconvert --to notebook --execute Dispatch_test.ipynb --output output.ipynb
